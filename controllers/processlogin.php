@@ -3,7 +3,7 @@ session_start();
 
 //trim < > from inputs
 $trim = str_replace('<', '', $_POST['eMail']);
-$uName = str_replace('>', '', $trim);
+$eMail = str_replace('>', '', $trim);
 
 $trim = str_replace('<', '', $_POST['pWord']);
 $pWord = str_replace('>', '', $trim);
@@ -14,7 +14,7 @@ $enpWord = base64_encode($pWord);
 $_SESSION["eMail"]="$eMail";
 
 mysqli_select_db($conn,"teletubbies") or die("Cannot connect to database"); //Connect to database
-$query= mysqli_query($conn, "SELECT * FROM users WHERE email = '$eMail' and pass = '$enpWord'"); //select record in database that has uname and pword content
+$query= mysqli_query($conn, "SELECT * FROM users WHERE email = '$eMail' and pass = '$enpWord'"); //select record in database that has eMail and pword content
 $exist = mysqli_num_rows($query);
 $table_username = "";
 $table_password = "";
@@ -28,7 +28,7 @@ if($exist > 0)
     $table_password = $_POST['pWord'];
     $pass_encrypt = base64_encode($table_password);
 
-    if(($uName == $table_username)&&($enpWord == $pass_encrypt))
+    if(($eMail == $table_username)&&($enpWord == $pass_encrypt))
     {
         if($enpWord == $pass_encrypt)
         {
