@@ -4,65 +4,6 @@ require_once('partials/header.php');
 require_once('partials/nav.php');
 
 ?>
-
- <div class="container-fluid">
-
-
-<!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Project Name Goes Here</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <!-- CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/style.css">
-        
-        <!-- Fontawesome -->
-        <link rel="stylesheet" type="text/css" href="htts://use.fontawesome.com/releases/v5.6.3/css/all.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    </head>
-    <body>
-        <!-- Navbar -->
-        <nav class="mainNav navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand ml-5" href="#">LOGO</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto mr-5">
-                    <li class="nav-item active mx-3">
-                        <a class="nav-link " href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link" href="#">Cart</a>
-                    </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link" href="#">Orders</a>
-                    </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link" data-toggle="modal" href="#login"> 
-                            <i class="far fa-user-circle"></i>
-                            <?php
-                                if ($_SESSION['uName'] == NULL)
-                                {
-                                    echo "login / register";    
-                                }
-                                else
-                                {
-                                    echo $_SESSION['uName'];
-                                }
-                            ?>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
         <!-- Content -->
         <div class="container-fluid">
             <!-- Search Bar -->
@@ -182,9 +123,9 @@ require_once('partials/nav.php');
                     <div class="modal-body">
                         <form action="processlogin.php" method="post">
                             <div class="form-group">
-                                <label for="uName">Username:</label> <input type="text"
-                                class="form-control" id="uName" placeholder="Enter username"
-                                name="uName" required="required" autocomplete="off" autofocus>
+                                <label for="eMail">Email:</label> <input type="text"
+                                class="form-control" id="eMail" placeholder="Enter username"
+                                name="eMail" required="required" autocomplete="off" autofocus>
                             </div>
 
                             <div class="form-group">
@@ -229,6 +170,18 @@ require_once('partials/nav.php');
                                 <label for="eMail">Enter email address:</label> <input type="text"
                                 class="form-control" id="eMail" placeholder="Enter email address"
                                 name="eMail" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pNum">Enter phone number:</label> <input type="text"
+                                class="form-control" id="pNum" placeholder="Enter phone number"
+                                name="pNum" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loc">Enter location:</label> <input type="text"
+                                class="form-control" id="loc" placeholder="Enter phone number"
+                                name="loc" required="required" autocomplete="off" autofocus>
                             </div>
 
                             <!-- password complexity -->
