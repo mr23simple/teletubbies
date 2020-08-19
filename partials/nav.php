@@ -20,13 +20,13 @@
                 <a class="nav-link" data-toggle="modal" href="#login"> 
                 <i class="far fa-user-circle"></i>
                 <?php
-                    if ($_SESSION['uName'] == NULL)
+                    if (isset($_SESSION['uName']))
                     {
-                        echo "login / register";    
+                        echo $_SESSION['uName'];
                     }
                     else
                     {
-                        echo $_SESSION['uName'];
+                        echo "login / register";    
                     }
                 ?>
                 </a>
