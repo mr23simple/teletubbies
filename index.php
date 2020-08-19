@@ -112,6 +112,104 @@ require_once('partials/nav.php');
                 </div>
             </div>
         </div>
+        <!-- login modal -->
+        <div class="modal fade" id="login">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="float:left;">Log in</h4>
+                        <button type="button" class="close" data-dismiss="modal" style="float:right">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action="processlogin.php" method="post">
+                            <div class="form-group">
+                                <label for="uName">Username:</label> <input type="text"
+                                class="form-control" id="uName" placeholder="Enter username"
+                                name="uName" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <div class="form-group">
+                            <label for="pWord">Password:</label> <input type="password"
+                                class="form-control" id="pWord" placeholder="Enter password"
+                                name="pWord" required="required" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Log-in</button><br>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary"
+                                    data-dismiss="modal" data-toggle="modal"
+                                    data-target="#register">Register
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <p>Copyright Copyright Copyright Copyright Copyright</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- register modal -->
+        <div class="modal fade" id="register">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="float:left;">Register</h4>
+                        <button type="button" class="close" data-dismiss="modal" data-toggle="modal"
+                        data-target="#login" style="float:right">&times;</button>
+                    </div>
+
+                    <div class="modal-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
+                        <form action="register.php" method="post" autocomplete="off">
+                            <div class="form-group">
+                                <label for="eMail">Enter email address:</label> <input type="text"
+                                class="form-control" id="eMail" placeholder="Enter email address"
+                                name="eMail" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <!-- password complexity -->
+                            <b><p>Password must contain the following:</p></b>
+                            <p>-at least one upper case letter</p>
+                            <p>-at least one lower case letter</p>
+                            <p>-at least one number</p>
+                            <p>-at least eight(8) characters long</p>
+
+                            <div class="form-group">
+                                <label for="pWord">Enter password:</label> <input type="password"
+                                class="form-control" id="pWord" placeholder="Enter password"
+                                name="pWord" required="required" autocomplete="off" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pwd">Confirm Password:</label> <input type="password"
+                                class="form-control" id="cpWord" placeholder="Confirm Password"
+                                name="cpWord" required="required" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                            <button type="submit" class="btn btn-primary" >Submit</button><br>
+                            </div>
+                            <div class="form-group">
+                            <button type="button" class="btn btn-primary"
+                            data-dismiss="modal" data-toggle="modal"
+                            data-target="#login" >Previous
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer text-center">
+                        <p>Copyright</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <?php
 require_once('partials/footer.php');

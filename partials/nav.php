@@ -17,9 +17,18 @@
                 <a class="nav-link" href="#">Orders</a>
             </li>
             <li class="nav-item mx-3">
-                <a class="nav-link" href="#"> 
-                    <i class="far fa-user-circle"></i>
-                    User
+                <a class="nav-link" data-toggle="modal" href="#login"> 
+                <i class="far fa-user-circle"></i>
+                <?php
+                    if ($_SESSION['uName'] == NULL)
+                    {
+                        echo "login / register";    
+                    }
+                    else
+                    {
+                        echo $_SESSION['uName'];
+                    }
+                ?>
                 </a>
             </li>
         </ul>
