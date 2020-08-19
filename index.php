@@ -19,7 +19,11 @@ if(isset($_SESSION['last_action'])){
 $_SESSION['last_action'] = time();
 
 //check if a user is logged in
-if ($_SESSION['uName'] == NULL)
+if (isset($_SESSION['uName']))
+{
+    //user is already logged in
+}
+else
 {
     $_SESSION['uName'] = "";
 }
