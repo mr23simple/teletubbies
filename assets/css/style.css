@@ -20,3 +20,13 @@
     height: 345px;
     width: 345px;
 }
+
+.btn-add,
+.btn-minus
+{
+    height: 30px;
+    width: 30px;
+    padding: 0 !important;
+    font-size: 15pt;
+    font-weight: bold;
+}
