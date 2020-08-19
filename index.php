@@ -1,14 +1,98 @@
 <?php
-
-
 require_once('partials/header.php');
 
 require_once('partials/nav.php');
 
 ?>
 
-        <div class="container-fluid">
+ <div class="container-fluid">
+session_start();
+//Expire the session if user is inactive for 10 minutes or more.
+$expireAfter = 10;
+//Check to see if our "last action" session variable has been set.
+if(isset($_SESSION['last_action'])){
+    //Figure out how many seconds have passed since the user was last active.
+    $secondsInactive = time() - $_SESSION['last_action'];
+    //Convert our minutes into seconds.
+    $expireAfterSeconds = $expireAfter * 60;
+    //Check to see if they have been inactive for too long.
+    if($secondsInactive >= $expireAfterSeconds){
+        //User has been inactive for too long. Kill their session.
+        session_unset();
+        session_destroy();
+    }
+}
+//Assign the current timestamp as the user's latest activity
+$_SESSION['last_action'] = time();
 
+//check if a user is logged in
+if (isset($_SESSION['uName']))
+{
+    //user is already logged in
+}
+else
+{
+    $_SESSION['uName'] = "";
+}
+?>
+
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Project Name Goes Here</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+        
+        <!-- Fontawesome -->
+        <link rel="stylesheet" type="text/css" href="htts://use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="mainNav navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand ml-5" href="#">LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mr-5">
+                    <li class="nav-item active mx-3">
+                        <a class="nav-link " href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="#">Cart</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="#">Orders</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" data-toggle="modal" href="#login"> 
+                            <i class="far fa-user-circle"></i>
+                            <?php
+                                if ($_SESSION['uName'] == NULL)
+                                {
+                                    echo "login / register";    
+                                }
+                                else
+                                {
+                                    echo $_SESSION['uName'];
+                                }
+                            ?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="container-fluid">
             <!-- Search Bar -->
             <div class="container">
                 <div class="row mt-5 pt-5 mx-auto">
@@ -24,11 +108,13 @@ require_once('partials/nav.php');
             </div>
 
 
+            <!-- Divider -->
             <div class="divider mt-5 mb-5">
                 <hr>
             </div>
 
 
+           <!-- Produce -->
             <div class="container">
                 <div class="row row-cols-1 row-cols-md-3">
                     <div class="col mb-4">
