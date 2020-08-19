@@ -19,13 +19,13 @@ if(isset($_SESSION['last_action'])){
 $_SESSION['last_action'] = time();
 
 //check if a user is logged in
-if (isset($_SESSION['uName']))
+if (isset($_SESSION['eMail']))
 {
     //user is already logged in
 }
 else
 {
-    $_SESSION['uName'] = "";
+    $_SESSION['eMail'] = "";
 }
 ?>
 
@@ -66,18 +66,19 @@ else
                         <a class="nav-link" href="#">Orders</a>
                     </li>
                     <li class="nav-item mx-3">
+                    <?php  
+                    if (isset($_SESSION['eMail']))
+                    { ?>
                         <a class="nav-link" data-toggle="modal" href="#login"> 
                             <i class="far fa-user-circle"></i>
-                            <?php
-                                if ($_SESSION['uName'] == NULL)
-                                {
-                                    echo "login / register";    
-                                }
-                                else
-                                {
-                                    echo $_SESSION['uName'];
-                                }
-                            ?>
+                            <?php echo $_SESSION['eMail']; }?>
+                        </a>
+                    <?php  
+                    else
+                    { ?> 
+                        <a class="nav-link" data-toggle="modal" href="#login"> 
+                            <i class="far fa-user-circle"></i>
+                            <?php echo "login / register";  } ?>
                         </a>
                     </li>
                 </ul>
@@ -202,9 +203,9 @@ else
                     <div class="modal-body">
                         <form action="processlogin.php" method="post">
                             <div class="form-group">
-                                <label for="uName">Username:</label> <input type="text"
-                                class="form-control" id="uName" placeholder="Enter username"
-                                name="uName" required="required" autocomplete="off" autofocus>
+                                <label for="eMail">Email:</label> <input type="text"
+                                class="form-control" id="eMail" placeholder="Enter username"
+                                name="eMail" required="required" autocomplete="off" autofocus>
                             </div>
 
                             <div class="form-group">
@@ -249,6 +250,18 @@ else
                                 <label for="eMail">Enter email address:</label> <input type="text"
                                 class="form-control" id="eMail" placeholder="Enter email address"
                                 name="eMail" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pNum">Enter phone number:</label> <input type="text"
+                                class="form-control" id="pNum" placeholder="Enter phone number"
+                                name="pNum" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loc">Enter location:</label> <input type="text"
+                                class="form-control" id="loc" placeholder="Enter phone number"
+                                name="loc" required="required" autocomplete="off" autofocus>
                             </div>
 
                             <!-- password complexity -->
