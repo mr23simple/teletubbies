@@ -1,0 +1,22 @@
+.mainNav
+{
+    background-color: #26A96C;
+    color: #fff;
+}
+
+.btn-srch
+{
+    width: 50px !important;
+}
+
+.input-srch
+{
+    width: 25vw !important;
+    border-color: #000;
+}
+
+.product-img
+{
+    height: 345px;
+    width: 345px;
+}
