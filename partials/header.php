@@ -19,16 +19,6 @@
     }
 //Assign the current timestamp as the user's latest activity
 $_SESSION['last_action'] = time();
-
-//check if a user is logged in
-if (isset($_SESSION['uName']))
-{
-    //user is already logged in
-}
-else
-{
-    $_SESSION['uName'] = "";
-}
 ?>
 
 <!DOCTYPE html>

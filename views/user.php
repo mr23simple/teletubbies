@@ -7,7 +7,7 @@ require_once('../partials/nav.php');
 
 
 
-
+<!-- content goes here -->
 
 
 

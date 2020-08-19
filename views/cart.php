@@ -119,7 +119,6 @@ require_once('../partials/nav.php');
                 </div>
             </div>
         </div>
-
 <?php
 require_once('../partials/footer.php');
 ?>

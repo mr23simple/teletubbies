@@ -17,19 +17,20 @@
                 <a class="nav-link" href="#">Orders</a>
             </li>
             <li class="nav-item mx-3">
-                <a class="nav-link" data-toggle="modal" href="#login"> 
-                <i class="far fa-user-circle"></i>
-                <?php
-                    if (isset($_SESSION['uName']))
-                    {
-                        echo $_SESSION['uName'];
-                    }
-                    else
-                    {
-                        echo "login / register";    
-                    }
-                ?>
-                </a>
+                <?php if(isset($_SESSION['eMail'])) 
+                {?>
+                    <a class="nav-link" href="#"> 
+                    <i class="far fa-user-circle"></i>
+                    <?php echo $_SESSION['eMail']; 
+                    echo "</a>";
+                }
+                else
+                { ?>
+                    <a class="nav-link" data-toggle="modal" href="#login"> 
+                    <i class="far fa-user-circle"></i>
+                    <?php echo "login / register";  
+                    echo "</a>";
+                }?>
             </li>
         </ul>
     </div>
