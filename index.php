@@ -20,12 +20,10 @@ require_once('partials/nav.php');
                 </div>
             </div>
 
-
             <!-- Divider -->
             <div class="divider mt-5 mb-5">
                 <hr>
             </div>
-
 
            <!-- Produce -->
             <div class="container">
@@ -111,6 +109,7 @@ require_once('partials/nav.php');
                 </div>
             </div>
         </div>
+
         <!-- login modal -->
         <div class="modal fade" id="login">
             <div class="modal-dialog modal-dialog-centered">
@@ -121,7 +120,7 @@ require_once('partials/nav.php');
                     </div>
 
                     <div class="modal-body">
-                        <form action="processlogin.php" method="post">
+                        <form action="controllers/login.php" method="post">
                             <div class="form-group">
                                 <label for="eMail">Email:</label> <input type="text"
                                 class="form-control" id="eMail" placeholder="Enter username"
@@ -167,20 +166,32 @@ require_once('partials/nav.php');
                     <div class="modal-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
                         <form action="register.php" method="post" autocomplete="off">
                             <div class="form-group">
+                                <label for="uName">Enter username:</label> <input type="text"
+                                class="form-control" id="uName" placeholder="username"
+                                name="uName" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="eMail">Enter email address:</label> <input type="text"
-                                class="form-control" id="eMail" placeholder="Enter email address"
+                                class="form-control" id="eMail" placeholder="email address"
                                 name="eMail" required="required" autocomplete="off" autofocus>
                             </div>
 
                             <div class="form-group">
                                 <label for="pNum">Enter phone number:</label> <input type="text"
-                                class="form-control" id="pNum" placeholder="Enter phone number"
+                                class="form-control" id="pNum" placeholder="phone number"
                                 name="pNum" required="required" autocomplete="off" autofocus>
                             </div>
 
                             <div class="form-group">
+                                <label for="cName">Enter company name:</label> <input type="text"
+                                class="form-control" id="cName" placeholder="company name"
+                                name="cName" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="loc">Enter location:</label> <input type="text"
-                                class="form-control" id="loc" placeholder="Enter phone number"
+                                class="form-control" id="loc" placeholder="Enter location"
                                 name="loc" required="required" autocomplete="off" autofocus>
                             </div>
 
@@ -193,13 +204,13 @@ require_once('partials/nav.php');
 
                             <div class="form-group">
                                 <label for="pWord">Enter password:</label> <input type="password"
-                                class="form-control" id="pWord" placeholder="Enter password"
+                                class="form-control" id="pWord" placeholder="password"
                                 name="pWord" required="required" autocomplete="off" >
                             </div>
 
                             <div class="form-group">
                                 <label for="pwd">Confirm Password:</label> <input type="password"
-                                class="form-control" id="cpWord" placeholder="Confirm Password"
+                                class="form-control" id="cpWord" placeholder="confirm Password"
                                 name="cpWord" required="required" autocomplete="off">
                             </div>
 
@@ -225,6 +236,3 @@ require_once('partials/nav.php');
 <?php
 require_once('partials/footer.php');
 ?>
-
-        
-        

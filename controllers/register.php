@@ -3,32 +3,28 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$databasename = "teletubbies";
+$databasename = "hackunamatata";
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 
+//remove < and > from user input
 $trim2a = str_replace('<', '', $_POST['eMail']);
-$trim1a = str_replace('>', '', $trim2a);
-$email = str_replace(' ', '', $trim1a);
+$email = str_replace('>', '', $trim2a);
 
 $trim2b = str_replace('<', '', $_POST['pNum']);
-$trim1b = str_replace('>', '', $trim2b);
-$pnum = str_replace(' ', '', $trim1b);
+$pnum = str_replace('>', '', $trim2b);
 
 $trim2c = str_replace('<', '', $_POST['pWord']);
-$trim1c = str_replace('>', '', $trim2c);
-$pword = str_replace(' ', '', $trim1c);
+$pword = str_replace('>', '', $trim2c);
 
 $trim2d = str_replace('<', '', $_POST['cpWord']);
-$trim1d = str_replace('>', '', $trim2d);
-$cpword = str_replace(' ', '', $trim1d);
+$cpword = str_replace('>', '', $trim2d);
 
 $trim2e = str_replace('<', '', $_POST['loc']);
-$trim1e = str_replace('>', '', $trim2e);
-$loc = str_replace(' ', '', $trim1e);
+$loc = str_replace('>', '', $trim2e);
 
-date_default_timezone_set("Asia/Manila");
-$date=date("M/d/Y");
-$time=date("H:i:s");
+//date_default_timezone_set("Asia/Manila");
+//$date=date("M/d/Y");
+//$time=date("H:i:s");
 
 $enpWord = base64_encode($pWord);
 

@@ -19,7 +19,7 @@
             <li class="nav-item mx-3">
                 <?php if(isset($_SESSION['eMail'])) 
                 {?>
-                    <a class="nav-link" href="#"> 
+                    <a class="nav-link" href="controllers/logout.php"> 
                     <i class="far fa-user-circle"></i>
                     <?php echo $_SESSION['eMail']; 
                     echo "</a>";
