@@ -2,7 +2,7 @@
 session_start();
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "mySQLp@ssword127";
 $databasename = "hackunamatata";
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 
@@ -24,15 +24,15 @@ $cpWord = str_replace('>', '', $trimcpWord);
 $trimloc = str_replace('<', '', $_POST['loc']);
 $loc = str_replace('>', '', $trimloc);
 
-
+$isCorporate = $_POST['customSwitch1'] == 1 ? 1 : 0;
 
 
 $enpWord = base64_encode($pWord);
 
 $query= mysqli_query($conn, "SELECT * FROM user WHERE user_email = '$eMail'"); //check if same email exists in the db
-$exist = mysqli_num_rows($query); // get number of results
+$mailcheck = mysqli_num_rows($query); // get number of results
 
-if($exist <= 0) //if 0 matches proceed
+if($mailcheck <= 0) //if 0 email matches then proceed
 {
   if($pWord == $cpWord) //if password matches confirm password
   {
@@ -60,8 +60,8 @@ if($exist <= 0) //if 0 matches proceed
     {   
 
         try{
-         $sql = "INSERT INTO user(`user_organization`, `user_individual`, `user_email`, `user_password`, `user_phoneNumber`, `user_address` )
-          VALUES ('".$organization."','".$individual."','".$eMail."','".$pWord."','".$pNum."','".$loc."')";
+         $sql = "INSERT INTO user(`user_organization`, `user_email`, `user_password`, `user_phoneNumber`, `user_address`, user_isCorporate )
+          VALUES ('".$name."','".$eMail."','".$pWord."','".$pNum."','".$loc."','".$isCorporate."')";
          $result = mysqli_query($conn, $sql) or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error($conn), E_USER_ERROR);
 
          if($result){
@@ -86,7 +86,7 @@ if($exist <= 0) //if 0 matches proceed
   }
 }
 else {
-    Print '<script>alert("User Already Exists!");</script>'; //Prompts the user
+    Print '<script>alert("Email Address Exists!");</script>'; //Prompts the user
     Print '<script>window.location.assign("../index.php");</script>'; // redirects to ../index.php
 }
  ?>
