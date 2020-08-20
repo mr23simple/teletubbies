@@ -15,6 +15,7 @@
             //User has been inactive for too long. Kill their session.
             session_unset();
             session_destroy();
+            Print '<script>alert("Session expired due to inactivity.");</script>';
         }   
     }
 //Assign the current timestamp as the user's latest activity

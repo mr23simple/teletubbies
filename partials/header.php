@@ -15,6 +15,7 @@
             //User has been inactive for too long. Kill their session.
             session_unset();
             session_destroy();
+            Print '<script>alert("Session expired due to inactivity.");</script>';
         }   
     }
 //Assign the current timestamp as the user's latest activity
@@ -22,6 +23,7 @@ $_SESSION['last_action'] = time();
 
 //check if a user is logged in otherwise redirect to landing page
 if (empty($_SESSION['eMail'])) {
+    Print '<script>alert("You must be logged in.");</script>';
     header('Location: ../index.php');
     exit;
 }
