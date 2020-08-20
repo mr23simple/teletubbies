@@ -10,7 +10,7 @@ $pWord = str_replace('>', '', $trim);
 
 $servername = "localhost";
 $username = "root";  //your user name for php my admin
-$password = "mySQLp@ssword127";  //password
+$password = "";  //password
 $databasename = "hackunamatata"; //db name
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server
 
