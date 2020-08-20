@@ -65,14 +65,14 @@ $_SESSION['last_action'] = time();
                     </li>
                 <?php }
             } ?>
-            <li class="nav-item active mx-3">
-                <a class="nav-link " href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item mx-3">
+                <a class="nav-link " href="#">Home</a>
             </li>
             <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Cart</a>
+                <a class="nav-link" href="views/cart.php">Cart</a>
             </li>
             <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Orders</a>
+                <a class="nav-link" href="views/order.php">Orders</a>
             </li>
             <li class="nav-item mx-3">
                 <?php if(isset($_SESSION['eMail'])) 

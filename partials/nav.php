@@ -13,23 +13,23 @@
                 if($role=="Admin")
                 { ?>
                     <li class="nav-item mx-3">
-                        <a class="nav-link " href="views/admin.php">Admin</a>
+                        <a class="nav-link " href="admin.php">Admin</a>
                     </li>
                 <?php }
             } ?>
-            <li class="nav-item active mx-3">
-                <a class="nav-link " href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item mx-3">
+                <a class="nav-link " href="../index.php">Home</a>
             </li>
             <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Cart</a>
+                <a class="nav-link" href="cart.php">Cart</a>
             </li>
             <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Orders</a>
+                <a class="nav-link" href="order.php">Orders</a>
             </li>
             <li class="nav-item mx-3">
                 <?php if(isset($_SESSION['eMail'])) 
                 {?>
-                    <a class="nav-link" href="controllers/logout.php"> 
+                    <a class="nav-link" href="../controllers/logout.php"> 
                     <i class="far fa-user-circle"></i>
                     <?php echo $_SESSION['eMail']; 
                     echo "</a>";
@@ -40,7 +40,7 @@
                     <i class="far fa-user-circle"></i>
                     <?php echo "login / register";  
                     echo "</a>";
-                }?>
+                } ?>
             </li>
         </ul>
     </div>
