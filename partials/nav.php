@@ -7,6 +7,16 @@
           
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mr-5">
+            <?php if(isset($_SESSION["type"])) //get user type
+            {
+                $role = $_SESSION["type"];
+                if($role=="Admin")
+                { ?>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link " href="views/admin.php">Admin</a>
+                    </li>
+                <?php }
+            } ?>
             <li class="nav-item active mx-3">
                 <a class="nav-link " href="#">Home <span class="sr-only">(current)</span></a>
             </li>
