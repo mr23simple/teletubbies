@@ -164,12 +164,19 @@ require_once('partials/nav.php');
                     </div>
 
                     <div class="modal-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
-                        <form action="register.php" method="post" autocomplete="off">
+                        <form action="controllers/register.php" method="post" autocomplete="off">
                             <div class="form-group">
-                                <label for="uName">Enter username:</label> <input type="text"
-                                class="form-control" id="uName" placeholder="username"
-                                name="uName" required="required" autocomplete="off" autofocus>
+                                <label for="individual">Enter Full Name:</label> <input type="text"
+                                class="form-control" id="individual" placeholder="Full Name"
+                                name="individual" required="required" autocomplete="off" autofocus>
                             </div>
+
+                            <div class="form-group">
+                                <label for="organization">Enter Organization:</label> <input type="text"
+                                class="form-control" id="organization" placeholder="Organization"
+                                name="organization" required="required" autocomplete="off" autofocus>
+                            </div>
+
 
                             <div class="form-group">
                                 <label for="eMail">Enter email address:</label> <input type="text"
@@ -183,11 +190,6 @@ require_once('partials/nav.php');
                                 name="pNum" required="required" autocomplete="off" autofocus>
                             </div>
 
-                            <div class="form-group">
-                                <label for="cName">Enter company name:</label> <input type="text"
-                                class="form-control" id="cName" placeholder="company name"
-                                name="cName" required="required" autocomplete="off" autofocus>
-                            </div>
 
                             <div class="form-group">
                                 <label for="loc">Enter location:</label> <input type="text"
