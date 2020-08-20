@@ -199,20 +199,20 @@ $_SESSION['last_action'] = time();
             </div>
         </div>
 
-        <!-- login modal -->
-        <div class="modal fade" id="login">
+       <!-- login modal -->
+       <div class="modal fade" id="login">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" style="float:left;">Log in</h4>
+                        <h4 class="modal-title" style="float:left;">Sign In</h4>
                         <button type="button" class="close" data-dismiss="modal" style="float:right">&times;</button>
                     </div>
 
-                    <div class="modal-body">
+                    <div class="modal-body px-4 py-5">
                         <form action="controllers/login.php" method="post">
                             <div class="form-group">
                                 <label for="eMail">Email:</label> <input type="text"
-                                class="form-control" id="eMail" placeholder="Enter username"
+                                class="form-control" id="eMail" placeholder="Enter email address"
                                 name="eMail" required="required" autocomplete="off" autofocus>
                             </div>
 
@@ -222,21 +222,29 @@ $_SESSION['last_action'] = time();
                                 name="pWord" required="required" autocomplete="off">
                             </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Log-in</button><br>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="button" class="btn btn-primary"
-                                    data-dismiss="modal" data-toggle="modal"
-                                    data-target="#register">Register
-                                </button>
+                            <div class="form-group row mt-5">
+                            <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        Proceed
+                                    </button>
+                                    <span class="register-link text-muted text-center">
+                                        I want to 
+                                        <a href="#"
+                                        data-dismiss="modal" data-toggle="modal"
+                                        data-target="#register">
+                                            register
+                                        </a>
+                                         .
+                                    </span>
+                                </div>
+                                <div class="col-md-4"></div>
                             </div>
                         </form>
                     </div>
 
-                    <div class="modal-footer">
-                        <p>Copyright Copyright Copyright Copyright Copyright</p>
+                    <div class="modal-footer align-items-center justify-content-center">
+                        <p class="text-muted text-center">Copyright &copy; Telebubbies 2020</p>
                     </div>
                 </div>
             </div>
@@ -247,76 +255,95 @@ $_SESSION['last_action'] = time();
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" style="float:left;">Register</h4>
+                        <h4 class="modal-title" style="float:left;">Sign Up</h4>
                         <button type="button" class="close" data-dismiss="modal" data-toggle="modal"
                         data-target="#login" style="float:right">&times;</button>
                     </div>
 
-                    <div class="modal-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
-                        <form action="register.php" method="post" autocomplete="off">
+                    <div class="modal-body px-4 py-5" style="max-height: calc(100vh - 210px); overflow-y: auto;">
+                        <form action="controllers/register.php" method="post" autocomplete="off">
                             <div class="form-group">
-                                <label for="uName">Enter username:</label> <input type="text"
-                                class="form-control" id="uName" placeholder="username"
-                                name="uName" required="required" autocomplete="off" autofocus>
+                                <label for="name">Organization's / Person's Name :</label> <input type="text"
+                                class="form-control" id="name" placeholder="Please enter name"
+                                name="name" required="required" autocomplete="off" autofocus>
+                            </div>
+
+                            <div class="custom-control custom-switch mb-3">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1" name="customSwitch1" value=1>
+                                <label class="custom-control-label" for="customSwitch1">A Corporate Client?</label>
                             </div>
 
                             <div class="form-group">
-                                <label for="eMail">Enter email address:</label> <input type="text"
-                                class="form-control" id="eMail" placeholder="email address"
+                                <label for="eMail">Email Address</label> <input type="text"
+                                class="form-control" id="eMail" placeholder="Please enter email address"
                                 name="eMail" required="required" autocomplete="off" autofocus>
                             </div>
 
                             <div class="form-group">
-                                <label for="pNum">Enter phone number:</label> <input type="text"
-                                class="form-control" id="pNum" placeholder="phone number"
+                                <label for="pNum">Mobile Number</label> <input type="text"
+                                class="form-control" id="pNum" placeholder="Please enter mobile number"
                                 name="pNum" required="required" autocomplete="off" autofocus>
                             </div>
 
                             <div class="form-group">
-                                <label for="cName">Enter company name:</label> <input type="text"
-                                class="form-control" id="cName" placeholder="company name"
-                                name="cName" required="required" autocomplete="off" autofocus>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="loc">Enter location:</label> <input type="text"
-                                class="form-control" id="loc" placeholder="Enter location"
+                                <label for="loc">Address</label> <input type="text"
+                                class="form-control" id="loc" placeholder="Please enter address"
                                 name="loc" required="required" autocomplete="off" autofocus>
                             </div>
 
-                            <!-- password complexity -->
-                            <b><p>Password must contain the following:</p></b>
-                            <p>-at least one upper case letter</p>
-                            <p>-at least one lower case letter</p>
-                            <p>-at least one number</p>
-                            <p>-at least eight(8) characters long</p>
-
                             <div class="form-group">
-                                <label for="pWord">Enter password:</label> <input type="password"
-                                class="form-control" id="pWord" placeholder="password"
+                                <label for="pWord">Password</label> <input type="password"
+                                class="form-control" id="pWord" placeholder="Please enter password"
                                 name="pWord" required="required" autocomplete="off" >
                             </div>
 
                             <div class="form-group">
-                                <label for="pwd">Confirm Password:</label> <input type="password"
-                                class="form-control" id="cpWord" placeholder="confirm Password"
+                                <label for="pwd">Confirm Password</label> <input type="password"
+                                class="form-control" id="cpWord" placeholder="Please confirm Password"
                                 name="cpWord" required="required" autocomplete="off">
                             </div>
 
-                            <div class="form-group">
-                            <button type="submit" class="btn btn-primary" >Submit</button><br>
-                            </div>
-                            <div class="form-group">
-                            <button type="button" class="btn btn-primary"
-                            data-dismiss="modal" data-toggle="modal"
-                            data-target="#login" >Previous
-                            </button>
+                            <!-- password complexity -->
+                            <b>
+                                <p class="text-muted">
+                                    Password requirements:
+                                </p>
+                            </b>
+                            
+                            <ul>
+                                <li class="text-muted font-italic">
+                                    At least one upper case letter.
+                                </li>
+                                <li class="text-muted font-italic">
+                                    At least one lower case letter.
+                                </li>
+                                <li class="text-muted font-italic">
+                                    At least one number.
+                                </li>
+                                <li class="text-muted font-italic">
+                                    At least eight(8) characters in length.
+                                </li>
+                            </ul>
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-secondary btn-block"
+                                    data-dismiss="modal" data-toggle="modal"
+                                    data-target="#login">
+                                        Previous
+                                    </button>                               
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        Submit
+                                    </button>                                
+                                </div>
                             </div>
                         </form>
                     </div>
 
-                    <div class="modal-footer text-center">
-                        <p>Copyright</p>
+                    <div class="modal-footer align-items-center justify-content-center">
+                        <p class="text-muted text-center">Copyright &copy; Telebubbies 2020</p>
                     </div>
                 </div>
             </div>
