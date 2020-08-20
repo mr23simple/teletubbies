@@ -19,6 +19,12 @@
     }
 //Assign the current timestamp as the user's latest activity
 $_SESSION['last_action'] = time();
+
+//check if a user is logged in otherwise redirect to landing page
+if (empty($_SESSION['eMail'])) {
+    header('Location: ../index.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
