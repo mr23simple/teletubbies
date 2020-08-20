@@ -30,3 +30,21 @@
     font-size: 15pt;
     font-weight: bold;
 }
+
+.profile-card
+{
+    margin-top: 13vh;
+}
+
+.photo-frame
+{
+    height: 390px;
+    width:  390px;
+    border: #D3D3D3 5px solid;
+    border-radius: 100%;
+}
+
+.profile
+{
+    background-color: #D3D3D3;
+}
