@@ -77,11 +77,16 @@ $_SESSION['last_action'] = time();
                     <li class="nav-item mx-3">
                         <?php if(isset($_SESSION['eMail'])) 
                         {?>
-                            <a class="nav-link" href="controllers/logout.php"> 
-                            <i class="far fa-user-circle"></i>
-                            <?php echo $_SESSION['eMail']; 
-                            echo "</a>";
-                        }
+                        <div class="dropdown show">
+                        <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $_SESSION['eMail'];?></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="views/user.php">Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="controllers/logout.php" onclick="logout()">Logout</a>
+                            </div>
+                        </div>
+                            <?php }
                         else
                         { ?>
                             <a class="nav-link" data-toggle="modal" href="#login"> 
