@@ -3,6 +3,20 @@
 require_once('../partials/header.php');
 // Require Nav
 require_once('../partials/nav.php');
+
+$eMail = $_SESSION['eMail'];
+
+
+$servername = "localhost";
+$username = "root";
+$password = "mySQLp@ssword127";
+$databasename = "hackunamatata";
+$conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
+
+$query2 = $conn->prepare("SELECT * FROM user WHERE user_email='$eMail'"); // prepare a query
+          $query2->execute(); // actually perform the query
+          $result2 = $query2->get_result(); // retrieve the result so it can be used inside PHP
+          $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r2
 ?>
 
 
@@ -34,22 +48,22 @@ require_once('../partials/nav.php');
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="Name">Organization / Individual</label>
-                        <input type="text" class="form-control" id="Name">
+                        <input type="text" class="form-control" id="Name" value="<?php echo $r2['user_organization']; ?>">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="MobileNumber">Mobile Number</label>
-                        <input type="text" class="form-control" id="MobileNumber">
+                        <input type="text" class="form-control" id="MobileNumber"value="<?php echo $r2['user_phoneNumber']; ?>">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="Email">Email Adress</label>
-                        <input type="email" class="form-control" id="Email">
+                        <input type="email" class="form-control" id="Email" value="<?php echo $r2['user_email']; ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">Address</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="House No./Street/Subdivision/Barangay/Building">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="House No./Street/Subdivision/Barangay/Building" value="<?php echo $r2['user_address']; ?>">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
