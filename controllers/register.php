@@ -6,11 +6,8 @@ $password = "";
 $databasename = "hackunamatata";
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 
-$trimorg = str_replace('<', '', $_POST['organization']);
-$organization = str_replace('>', '', $trimorg);
-
-$trimind = str_replace('<', '', $_POST['individual']);
-$individual = str_replace('>', '', $trimind);
+$trimorg = str_replace('<', '', $_POST['name']);
+$name = str_replace('>', '', $trimorg);
 
 $trimemail = str_replace('<', '', $_POST['eMail']);
 $eMail = str_replace('>', '', $trimemail);
