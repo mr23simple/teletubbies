@@ -130,8 +130,8 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                             echo "<tr>";
                             echo "<td>" .
                             "<div class='form-check'>
-                            <label class='form-check-label' for='".$r['userid']."'>
-                            <input type='checkbox' class='form-check-input' id='".$r['userid'].
+                            <label class='form-check-label' for='1".$r['userid']."'>
+                            <input type='checkbox' class='form-check-input' id='1".$r['userid'].
                             "' name='userid[]' value='".$r['userid']."'> ".$r['userid']."
                             </label>
                             </div></td>";

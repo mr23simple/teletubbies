@@ -206,7 +206,7 @@ $_SESSION['last_action'] = time();
         </div>
 
        <!-- login modal -->
-       <div class="modal fade" id="login">
+        <div class="modal fade" id="login">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
