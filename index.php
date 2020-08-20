@@ -22,7 +22,7 @@ $_SESSION['last_action'] = time();
 ?>
 
 <!DOCTYPE html>
-    <html>
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -47,52 +47,52 @@ $_SESSION['last_action'] = time();
     </head>
     <body>
         <!-- Navbar -->
-<nav class="mainNav navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand ml-5" href="#">LOGO</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-          
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto mr-5">
-            <?php if(isset($_SESSION["type"])) //get user type
-            {
-                $role = $_SESSION["type"];
-                if($role=="Admin")
-                { ?>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link " href="views/admin.php">Admin</a>
+        <nav class="mainNav navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand ml-5" href="#">LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-5">
+                    <?php if(isset($_SESSION["type"])) //get user type
+                    {
+                        $role = $_SESSION["type"];
+                        if($role=="Admin")
+                        { ?>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link " href="views/admin.php">Admin</a>
+                            </li>
+                        <?php } ?> 
+                        <li class="nav-item mx-3">
+                        <a class="nav-link " href="#">Home</a>
                     </li>
-                <?php }
-            } ?>
-            <li class="nav-item mx-3">
-                <a class="nav-link " href="#">Home</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link" href="views/cart.php">Cart</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link" href="views/order.php">Orders</a>
-            </li>
-            <li class="nav-item mx-3">
-                <?php if(isset($_SESSION['eMail'])) 
-                {?>
-                    <a class="nav-link" href="controllers/logout.php"> 
-                    <i class="far fa-user-circle"></i>
-                    <?php echo $_SESSION['eMail']; 
-                    echo "</a>";
-                }
-                else
-                { ?>
-                    <a class="nav-link" data-toggle="modal" href="#login"> 
-                    <i class="far fa-user-circle"></i>
-                    <?php echo "login / register";  
-                    echo "</a>";
-                }?>
-            </li>
-        </ul>
-    </div>
-</nav>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="views/cart.php">Cart</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="views/order.php">Orders</a>
+                    </li>
+                    <?php } ?>
+                    <li class="nav-item mx-3">
+                        <?php if(isset($_SESSION['eMail'])) 
+                        {?>
+                            <a class="nav-link" href="controllers/logout.php"> 
+                            <i class="far fa-user-circle"></i>
+                            <?php echo $_SESSION['eMail']; 
+                            echo "</a>";
+                        }
+                        else
+                        { ?>
+                            <a class="nav-link" data-toggle="modal" href="#login"> 
+                            <i class="far fa-user-circle"></i>
+                            <?php echo "login / register";  
+                            echo "</a>";
+                        } ?>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <!-- Content -->
         <div class="container-fluid">
             <!-- Search Bar -->
@@ -349,10 +349,9 @@ $_SESSION['last_action'] = time();
             </div>
         </div>
         <script src="" async defer></script>
-
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-</body>
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
 </html>
