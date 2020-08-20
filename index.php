@@ -269,6 +269,7 @@ $_SESSION['last_action'] = time();
                             </div>
 
                             <div class="custom-control custom-switch mb-3">
+                                <input type="hidden" name="customSwitch1" value=0 />
                                 <input type="checkbox" class="custom-control-input" id="customSwitch1" name="customSwitch1" value=1>
                                 <label class="custom-control-label" for="customSwitch1">A Corporate Client?</label>
                             </div>
