@@ -10,7 +10,7 @@ $pWord = str_replace('>', '', $trim);
 
 $servername = "localhost";
 $username = "root";  //your user name for php my admin
-$password = "";  //password
+$password = "mySQLp@ssword127";  //password
 $databasename = "hackunamatata"; //db name
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server
 
@@ -38,6 +38,7 @@ if($exist > 0)
         {
             $_SESSION["type"]=$r2['user_type'];
             $_SESSION["eMail"]=$r2['user_email'];
+            $_SESSION["userId"]=$r2['userid'];
             Print '<script>window.location.assign("../index.php");</script>';//proceeds to home
         }
     }
