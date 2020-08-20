@@ -199,8 +199,8 @@ $_SESSION['last_action'] = time();
             </div>
         </div>
 
-        <!-- login modal -->
-        <div class="modal fade" id="login">
+       <!-- login modal -->
+       <div class="modal fade" id="login">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -209,7 +209,7 @@ $_SESSION['last_action'] = time();
                     </div>
 
                     <div class="modal-body px-4 py-5">
-                        <form action="processlogin.php" method="post">
+                        <form action="controllers/login.php" method="post">
                             <div class="form-group">
                                 <label for="eMail">Email:</label> <input type="text"
                                 class="form-control" id="eMail" placeholder="Enter email address"
