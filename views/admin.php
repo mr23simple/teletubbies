@@ -30,7 +30,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                 <h3>Update user type</h3>  
             </div>
             
-            <!-- view and edit users -->
+            <!-- update user type -->
             <div class="container">
               <form action="../controllers/updatetype.php" method="post">
                 <div class="form-group">
@@ -85,6 +85,15 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                     }
                   ?>
                 </div>
+                <div class="form-group">
+                  <label for="newType">Select user type:</label>
+                  <select class="form-control" id="newType" name="newType" required="required">
+                    <option value="" selected disabled>Please select</option>
+                    <option>Customer</option>
+                    <option>Farmer</option>
+                    <option>Admin</option>
+                  </select>
+                </div>
                 <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Update</button>
               </form>
             </div>
@@ -98,7 +107,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                 <h3>Delete users</h3>  
             </div>
 
-            <!-- view and edit users -->
+            <!-- soft delete user -->
             <div class="container">
               <form action="../controllers/deleteuser.php" method="post">
                 <div class="form-group">
@@ -244,7 +253,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                 }
             </script>
 
-            <!-- sort table contents on click -->
+            <!-- sort table1 contents on click -->
             <script>
                 function sortTable1(n) 
                 {
