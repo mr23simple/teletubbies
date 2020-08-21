@@ -8,7 +8,7 @@ $sessionUserId = $_SESSION['userId'];
 
 $servername = "localhost";
 $username = "root";
-$password = "mySQLp@ssword127";
+$password = "";
 $databasename = "hackunamatata";
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 
