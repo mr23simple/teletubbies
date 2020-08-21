@@ -32,7 +32,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
             
             <!-- update user type -->
             <div class="container">
-              <form action="../controllers/updatetype.php" method="post">
+              <form action="../controllers/updatetype.php" method="post" onsubmit="return confirm('Update user data?')">
                 <div class="form-group">
                   <?php
                     $query = $conn->prepare("SELECT * FROM user"); // displays all users
@@ -77,7 +77,17 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                         }
                         while ($r = $result -> fetch_assoc());
                         echo '</tbody>
-                        </table></div></div>';
+                        </table></div></div>
+                        <div class="form-group">
+                        <label for="newType">Select user type:</label>
+                        <select class="form-control" id="newType" name="newType" required="required">
+                            <option value="" selected disabled>Please select</option>
+                            <option>Customer</option>
+                            <option>Farmer</option>
+                            <option>Admin</option>
+                        </select>
+                        </div>
+                        <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Update</button>';
                     }
                     else
                     {
@@ -85,16 +95,6 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                     }
                   ?>
                 </div>
-                <div class="form-group">
-                  <label for="newType">Select user type:</label>
-                  <select class="form-control" id="newType" name="newType" required="required">
-                    <option value="" selected disabled>Please select</option>
-                    <option>Customer</option>
-                    <option>Farmer</option>
-                    <option>Admin</option>
-                  </select>
-                </div>
-                <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Update</button>
               </form>
             </div>
 
@@ -109,7 +109,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
 
             <!-- soft delete user -->
             <div class="container">
-              <form action="../controllers/deleteuser.php" method="post">
+              <form action="../controllers/deleteuser.php" method="post" onsubmit="return confirm('Set user as inactive?')">
                 <div class="form-group">
                   <?php
                     $query = $conn->prepare("SELECT * FROM user"); // displays all users
@@ -154,15 +154,15 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                         }
                         while ($r = $result -> fetch_assoc());
                         echo '</tbody>
-                        </table></div></div>';
+                        </table></div></div>
+                        </div>
+                        <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Set as inactive</button>';
                     }
                     else
                     {
                         echo 'No records found.';
                     }
                   ?>
-                </div>
-                <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Set as inactive</button>
               </form>
             </div>
 
