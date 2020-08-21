@@ -97,7 +97,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
     <hr>
 </div>
 
-<?php if($_SESSION["type"] == "Farmer")
+<?php if($_SESSION["type"] == "Farmer") // display farmer options
 {
     ?>
 
@@ -134,12 +134,12 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
             $r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
             $userid = $r['userid'];//assign current user's user id to local variable
 
-            $query = $conn->prepare("SELECT * FROM product WHERE userid = '$userid'"); // displays all users
-            $query->execute(); // actually perform the query
-            $result = $query->get_result(); // retrieve the result so it can be used inside PHP
-            $r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
-
-            if ($result -> num_rows > 0)
+            $query1 = $conn->prepare("SELECT * FROM product WHERE userid = '$userid'"); // get products of current user
+            $query1->execute(); // actually perform the query
+            $result1 = $query1->get_result(); // retrieve the result so it can be used inside PHP
+            $r1 = $result1->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
+            
+            if ($result1 -> num_rows > 0)
             {
                 echo'<div style="max-height: 400px; overflow: scroll;">
                 <div style="width: 100%;">
@@ -153,31 +153,30 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                                 <th style="cursor: pointer;" onclick="sortTable(4)">Unit of Measure</th>
                                 <th style="cursor: pointer;" onclick="sortTable(5)">Quantity</th>
                                 <th style="cursor: pointer;" onclick="sortTable(6)">Description</th>
+                                <th></th>
                             </tr>
                     </thead>
                     <tbody>';
                 do
                 {   
-                    if($r['product_isActive'] ) {
                     echo "<tr>";
                     echo "<td>" .
                     "<div class='form-check'>
-                    <label class='form-check-label' for='".$r['productId']."'>
-                    <input type='checkbox' class='form-check-input' id='".$r['productId'].
-                    "' name='productId[]' value='".$r['productId']."'> ".$r['productId']."
+                    <label class='form-check-label' for='".$r1['productId']."'>
+                    <input type='checkbox' class='form-check-input' id='".$r1['productId'].
+                    "' name='productId[]' value='".$r1['productId']."'> ".$r1['productId']."
                     </label>
                     </div></td>";
-                    echo "<td>".$r['userid']."</td>";
-                    echo "<td>".$r['product_name']."</td>";
-                    echo "<td>".$r['product_price']."</td>";
-                    echo "<td>".$r['product_unitOfMeasure']."</td>";
-                    echo "<td>".$r['product_quantity']."</td>";
-                    echo "<td>".$r['product_description']."</td>";
+                    echo "<td>".$r1['userid']."</td>";
+                    echo "<td>".$r1['product_name']."</td>";
+                    echo "<td>".$r1['product_price']."</td>";
+                    echo "<td>".$r1['product_unitOfMeasure']."</td>";
+                    echo "<td>".$r1['product_quantity']."</td>";
+                    echo "<td>".$r1['product_description']."</td>";
+                    echo "<td><a href='#' class='editProduct' data-toggle='modal' data-id='".$r1['productId']."' data-target='#addBookDialog' type='submit' name='edit' Value='".$r1['productId']."'>edit</a></td>";
                     echo "</tr>";
-             
-                    }
-                       }
-                while ($r = $result -> fetch_assoc());
+                }
+                while ($r1 = $result1 -> fetch_assoc());
                 echo '</tbody>
                 </table></div></div></div>
                 <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Remove</button>';
@@ -189,6 +188,9 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
             ?>
     </form>
 </div>
+
+<?php } //end if user is farmer
+    ?>
 
 <!-- Divider -->
 <div class="divider  mb-5">
@@ -210,23 +212,23 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
     <form action="../controllers/addproduct.php" method="post" onsubmit="return confirm('Add product data?')">
         <div class="form-group">
             <label for="prodName">Product name:</label>
-            <input type="text" class="form-control" id="prodName" placeholder="Enter product name" name="prodName">
+            <input type="text" class="form-control" id="prodName" placeholder="Enter product name" name="prodName" required>
         </div>
         <div class="form-group">
             <label for="price">Price:</label>
-            <input type="text" class="form-control" id="price" placeholder="Enter price" name="price">
+            <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" required>
         </div>
         <div class="form-group">
             <label for="unit">Unit of measure:</label>
-            <input type="text" class="form-control" id="unit" placeholder="Enter unit of measure" name="unit">
+            <input type="text" class="form-control" id="unit" placeholder="Enter unit of measure" name="unit" required>
         </div>
         <div class="form-group">
             <label for="quantity">Quantity:</label>
-            <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity">
+            <input type="text" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity" required>
         </div>
         <div class="form-group">
             <label for="desc">Description:</label>
-            <input type="text" class="form-control" id="desc" placeholder="Enter description" name="desc">
+            <input type="text" class="form-control" id="desc" placeholder="Enter description" name="desc" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -237,10 +239,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
     <hr>
 </div>
 
-        <?php }
-    ?>
-
-<!-- update modal -->
+<!-- update user info modal -->
 <div class="modal fade" id="update">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -251,7 +250,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
             </div>
 
             <div class="modal-body px-4 py-5" style="max-height: calc(100vh - 210px); overflow-y: auto;">
-                <form action="../controllers/updateuser.php" method="post" autocomplete="off">
+                <form action="../controllers/updateuser.php" method="post" autocomplete="off" onsubmit="return confirm('Edit user data?')">
                     <div class="form-group">
                         <label for="name">Organization's / Person's Name :</label> <input type="text"
                         class="form-control" id="name" placeholder="Please enter name"
@@ -339,6 +338,67 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
     </div>
 </div>
 
+<!-- update product modal -->
+<div class="modal fade" id="addBookDialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="float:left;">Update</h4>
+                <button type="button" class="close" data-dismiss="modal" data-toggle="modal"
+                data-target="#login" style="float:right">&times;</button>
+            </div>
+
+            <div class="modal-body px-4 py-5" style="max-height: calc(100vh - 210px); overflow-y: auto;">
+                <form action="../controllers/updateproduct.php" method="post" autocomplete="off" onsubmit="return confirm('Edit product data?')">
+                    <div class="form-group">
+                        <label for="prodName">Product Name</label> <input type="text"
+                        class="form-control" id="prodName" placeholder="Please enter product name"
+                        name="prodName" required="required" autocomplete="off" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price</label> <input type="number"
+                        class="form-control" id="price" placeholder="Please enter price"
+                        name="price" required="required" autocomplete="off" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unit">Unit of Measure</label> <input type="text"
+                        class="form-control" id="unit" placeholder="Please enter unit of measure"
+                        name="unit" required="required" autocomplete="off" autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label> <input type="number"
+                        class="form-control" id="quantity" placeholder="Please enter quantity"
+                        name="quantity" required="required" autocomplete="off" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="desc">Description</label> <input type="text"
+                        class="form-control" id="desc" placeholder="Please enter product description"
+                        name="desc" required="required" autocomplete="off">
+                    </div>
+
+                    <input type="hidden" name="productId" id="productId" value=""/>
+
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Update
+                            </button>                                
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer align-items-center justify-content-center">
+                <p class="text-muted text-center">Copyright &copy; Telebubbies 2020</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 require_once('../partials/footer.php');
 ?>
@@ -356,6 +416,14 @@ require_once('../partials/footer.php');
         }
     }
 </script>-->
+
+<script>
+$(document).on("click", ".editProduct", function () {
+    var prodId = $(this).data('id');
+    $(".modal-body #productId").val( prodId );
+    //$('#addBookDialog').modal('show');
+});
+</script>
 
 <!-- sort table contents on click -->
 <script>
