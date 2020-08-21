@@ -8,7 +8,7 @@ $sessionUserId = $_SESSION['userId'];
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "mySQLp@ssword127";
 $databasename = "hackunamatata";
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 
@@ -157,7 +157,8 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                     </thead>
                     <tbody>';
                 do
-                {
+                {   
+                    if($r['product_isActive'] ) {
                     echo "<tr>";
                     echo "<td>" .
                     "<div class='form-check'>
@@ -173,7 +174,9 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                     echo "<td>".$r['product_quantity']."</td>";
                     echo "<td>".$r['product_description']."</td>";
                     echo "</tr>";
-                }
+             
+                    }
+                       }
                 while ($r = $result -> fetch_assoc());
                 echo '</tbody>
                 </table></div></div>';

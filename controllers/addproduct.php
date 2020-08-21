@@ -1,8 +1,9 @@
 <?php
 session_start();
+
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "mySQLp@ssword127";
 $databasename = "hackunamatata";
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 
@@ -30,8 +31,8 @@ $r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result 
 $userid = $r['userid']; //assign current user's user id to local variable
 
 try{
-    $sql = "INSERT INTO `product`(`userid`, `product_name`, `product_price`, `product_unitOfMeasure`, `product_quantity`, `product_description`, `product_isActive`)  
-    VALUES ('$userid','$prodName','$price','$unit','$quantity','$desc', '1')";
+    $sql = "INSERT INTO `product`(`userid`, `product_name`, `product_price`, `product_unitOfMeasure`, `product_quantity`, `product_description`)  
+    VALUES ('$userid','$prodName','$price','$unit','$quantity','$desc')";
     $result = mysqli_query($conn, $sql) or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error($conn), E_USER_ERROR);
 
     if($result){
