@@ -11,6 +11,7 @@ if (empty($_SESSION['eMail'])) {
     exit;
 }
 
+$newType = ($_POST['newType']);
 $data=$_POST['userid'];
 $query= mysqli_query($conn, "SELECT * FROM user");
 $exist = mysqli_num_rows($query);
@@ -19,7 +20,7 @@ mysqli_select_db($conn,"hackunamatata") or die("Cannot connect to database"); //
 
 foreach($data as $count)
 {
-	  mysqli_query($conn, "UPDATE `user` SET `user_type`= 'Farmer' WHERE `userid` = '$count'"); //update record in database
+	  mysqli_query($conn, "UPDATE `user` SET `user_type`= '$newType' WHERE `userid` = '$count'"); //update record in database
 }
 Print '<script>alert("User data successfully updated.");</script>'; //Prompts the user
 Print '<script>window.location.assign("../views/admin.php");</script>'; // redirect

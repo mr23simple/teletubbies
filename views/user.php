@@ -176,15 +176,14 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                 }
                 while ($r = $result -> fetch_assoc());
                 echo '</tbody>
-                </table></div></div>';
+                </table></div></div></div>
+                <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Remove</button>';
             }
             else
             {
-                echo 'No records found.';
+                echo 'No records found.<br><br><br></div>';
             }
             ?>
-        </div>
-        <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Remove</button>
     </form>
 </div>
 
