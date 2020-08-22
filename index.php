@@ -18,14 +18,14 @@
             Print '<script>alert("Session expired due to inactivity.");</script>';
         }   
     }
-//Assign the current timestamp as the user's latest activity
-$_SESSION['last_action'] = time();
+    //Assign the current timestamp as the user's latest activity
+    $_SESSION['last_action'] = time();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$databasename = "hackunamatata";
-$conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $databasename = "hackunamatata";
+    $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 ?>
 
 <!DOCTYPE html>
@@ -139,6 +139,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                 <div class="row row-cols-1 row-cols-md-3">';
                 do
                 {
+                    $local = $r["productId"];
                     echo '
                     <div class="col mb-4">
                         <div class="card">
@@ -148,15 +149,14 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                                 <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>'.$r["product_price"].'</h6>
                                 <p class="card-text">'.$r["product_description"].'</p>
                             </div>
-                            <div class="card-body">';
-                                //echo $r['productId'];
-                                echo "<a href='#' onclick='javascript:setval(".$r['productId'].")' class='editProduct btn btn-success btn-block' data-toggle='modal' data-id='".$r['productId']."' 
-                                data-target='#editModal' type='submit' name='selectedProduct' Value='".$r['productId']."'>".$r['productId']."</a>";                  
-                                echo '
+                            <div class="card-body">
+                                <form action="views/addtocart.php" method="post">
+                                    <button type="submit" name="submit" value="'.$local.'" class="btn btn-success btn-block" id="checkBtn" >Add to cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>';
-                }
+                 }
                 while ($r = $result -> fetch_assoc());
                 echo '</div>
                 </div>';
@@ -194,7 +194,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                             <div class="form-group row mt-5">
                             <div class="col-md-4"></div>
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-success btn-block">
                                         Proceed
                                     </button>
                                     <span class="register-link text-muted text-center">
@@ -304,7 +304,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                                     </button>                               
                                 </div>
                                 <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-success btn-block">
                                         Submit
                                     </button>                                
                                 </div>
@@ -318,52 +318,6 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                 </div>
             </div>
         </div>
-
-        <!-- update product modal -->
-        <div class="modal fade" id="editModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" style="float:left;">Update</h4>
-                        <button type="button" class="close" data-dismiss="modal" data-toggle="modal"
-                         style="float:right">&times;</button>
-                    </div>
-
-                    <div class="modal-body px-4 py-5 checkout-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
-                        <form action="controllers/checkout.php" method="post" autocomplete="off">
-                            <!-- 
-                                display product details here
-                            -->
-
-                            <input type="hidden" name="selectedProduct" id="selectedProduct" value=""/>
-
-                            <div class="form-group row">
-                                <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="modal-footer align-items-center justify-content-center">
-                        <p class="text-muted text-center">Copyright &copy; Telebubbies 2020</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>//pass value to modal
-        var mysample = '';
-        function setval(varval)
-        {
-            mysample= varval;//get parameter from js func call
-            //alert(mysample);
-            $('input[name="selectedProduct"]').val(mysample);
-        }
-
-        </script>
         
         <script src="" async defer></script>
         <!-- Bootstrap JS -->

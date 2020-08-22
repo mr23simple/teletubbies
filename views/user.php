@@ -31,7 +31,6 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                 <div class="row mt-5 align-items-center justify-content-center">
                     <input type="file" name="image">
                     <input type="submit" name="submit" value="Upload">
-
                 </div>
             </form>    
             <div class="row"></div>
@@ -84,7 +83,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                             <input type="text" class="form-control" id="ZipCode" placeholder="Zip">
                         </div>
                         <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#update">
-                        <button type="submit" class="btn btn-primary btn-block">Update</button></a>
+                        <button type="submit" class="btn btn-success btn-block">Update</button></a>
                     </div>
                 </form>
             </div>
@@ -179,7 +178,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                 while ($r1 = $result1 -> fetch_assoc());
                 echo '</tbody>
                 </table></div></div></div>
-                <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Remove</button>';
+                <button type="submit" name="submit" Value="Submit" class="btn btn-success" id="checkBtn" onclick="checkboxes()">Remove</button>';
             }
             else
             {
@@ -227,7 +226,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
             <label for="desc">Description:</label>
             <input type="text" class="form-control" id="desc" placeholder="Enter description" name="desc" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
 
@@ -324,7 +323,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                             </button>                               
                         </div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary btn-block">
+                            <button type="submit" class="btn btn-success btn-block">
                                 Submit
                             </button>                                
                         </div>
@@ -384,7 +383,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
 
                     <div class="form-group row">
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary btn-block">
+                            <button type="submit" class="btn btn-success btn-block">
                                 Update
                             </button>                                
                         </div>
