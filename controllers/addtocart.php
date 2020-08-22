@@ -6,30 +6,19 @@ $password = "";
 $databasename = "hackunamatata";
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 
-$trim1 = str_replace('<', '', $_POST['prodName']);
-$prodName = str_replace('>', '', $trim1);
+$id = $_POST['submit']; //product id
 
-$price = $_POST['price'];
+$query = $conn->prepare("SELECT * FROM product WHERE productId = '$id'"); // displays selected product
+$query->execute(); // actually perform the query
+$result = $query->get_result(); // retrieve the result so it can be used inside PHP
+$r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
 
-$trim3 = str_replace('<', '', $_POST['unit']);
-$unit = str_replace('>', '', $trim3);
-
-$quantity = $_POST['quantity'];
-
-$trim5 = str_replace('<', '', $_POST['desc']);
-$desc = str_replace('>', '', $trim5);
-
-$productId = $_POST['selectedProduct'];
-echo $productId;
-
-/*
 mysqli_select_db($conn,"hackunamatata") or die("Cannot connect to database"); //Connect to database
 mysqli_query($conn, "UPDATE `product` SET `product_name`='$prodName',`product_price`='$price',`product_unitOfMeasure`='$unit',
 `product_quantity`='$quantity',`product_description`='$desc' WHERE `productId` = '$productId'"); //update record in database
 
 Print '<script>alert("Product data successfully updated.");</script>'; //Prompts the user
 Print '<script>window.location.assign("../views/user.php");</script>'; // redirect
-*/
 
 /*try
 {

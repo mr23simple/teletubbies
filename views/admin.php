@@ -87,7 +87,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                             <option>Admin</option>
                         </select>
                         </div>
-                        <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Update</button>';
+                        <button type="submit" name="submit" Value="Submit" class="btn btn-success" id="checkBtn" onclick="checkboxes()">Update</button>';
                     }
                     else
                     {
@@ -156,7 +156,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                         echo '</tbody>
                         </table></div></div>
                         </div>
-                        <button type="submit" name="submit" Value="Submit" class="btn btn-primary" id="checkBtn" onclick="checkboxes()">Set as inactive</button>';
+                        <button type="submit" name="submit" Value="Submit" class="btn btn-success" id="checkBtn" onclick="checkboxes()">Set as inactive</button>';
                     }
                     else
                     {
