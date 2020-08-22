@@ -126,7 +126,7 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                 <hr>
             </div>
 
-            <!-- Produce -->
+            <!-- Products -->
             <?php
             $query = $conn->prepare("SELECT * FROM product"); // displays all products
             $query->execute(); // actually perform the query
@@ -148,8 +148,11 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                                 <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>'.$r["product_price"].'</h6>
                                 <p class="card-text">'.$r["product_description"].'</p>
                             </div>
-                            <div class="card-body">
-                                <button class="btn btn-success btn-block">Add to Cart</button>
+                            <div class="card-body">';
+                                //echo $r['productId'];
+                                echo "<a href='#' onclick='javascript:setval(".$r['productId'].")' class='editProduct btn btn-success btn-block' data-toggle='modal' data-id='".$r['productId']."' 
+                                data-target='#editModal' type='submit' name='selectedProduct' Value='".$r['productId']."'>".$r['productId']."</a>";                  
+                                echo '
                             </div>
                         </div>
                     </div>';
@@ -315,6 +318,52 @@ $conn = new mysqli($servername, $username, $password, $databasename) or die(mysq
                 </div>
             </div>
         </div>
+
+        <!-- update product modal -->
+        <div class="modal fade" id="editModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="float:left;">Update</h4>
+                        <button type="button" class="close" data-dismiss="modal" data-toggle="modal"
+                         style="float:right">&times;</button>
+                    </div>
+
+                    <div class="modal-body px-4 py-5 checkout-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
+                        <form action="controllers/checkout.php" method="post" autocomplete="off">
+                            <!-- 
+                                display product details here
+                            -->
+
+                            <input type="hidden" name="selectedProduct" id="selectedProduct" value=""/>
+
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        Update
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer align-items-center justify-content-center">
+                        <p class="text-muted text-center">Copyright &copy; Telebubbies 2020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>//pass value to modal
+        var mysample = '';
+        function setval(varval)
+        {
+            mysample= varval;//get parameter from js func call
+            //alert(mysample);
+            $('input[name="selectedProduct"]').val(mysample);
+        }
+
+        </script>
         
         <script src="" async defer></script>
         <!-- Bootstrap JS -->

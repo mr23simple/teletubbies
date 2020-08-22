@@ -173,7 +173,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
                     echo "<td>".$r1['product_unitOfMeasure']."</td>";
                     echo "<td>".$r1['product_quantity']."</td>";
                     echo "<td>".$r1['product_description']."</td>";
-                    echo "<td><a href='#' class='editProduct' data-toggle='modal' data-id='".$r1['productId']."' data-target='#addBookDialog' type='submit' name='edit' Value='".$r1['productId']."'>edit</a></td>";
+                    echo "<td><a href='#' class='editProduct' data-toggle='modal' data-id='".$r1['productId']."' data-target='#editModal' type='submit' name='edit' Value='".$r1['productId']."'>edit</a></td>";
                     echo "</tr>";
                 }
                 while ($r1 = $result1 -> fetch_assoc());
@@ -339,7 +339,7 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
 </div>
 
 <!-- update product modal -->
-<div class="modal fade" id="addBookDialog">
+<div class="modal fade" id="editModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -417,11 +417,10 @@ require_once('../partials/footer.php');
     }
 </script>-->
 
-<script>
+<script> //pass value to modal
 $(document).on("click", ".editProduct", function () {
     var prodId = $(this).data('id');
     $(".modal-body #productId").val( prodId );
-    //$('#addBookDialog').modal('show');
 });
 </script>
 
