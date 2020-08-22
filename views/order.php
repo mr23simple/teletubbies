@@ -31,48 +31,71 @@ require_once('../partials/nav.php');
 
             <!-- Transaction History Table -->
             <div class="container">
-                <table class="table table-hover text-center">
-                    <thead class="thead-dark"> 
-                        <th>Transaction Code</th>
-                        <th>Particulars</th>
-                        <th>Transaction Date</th>
-                        <th>Total Costs</th>
-                        <th>View Details</th>
-                    </thead>
+    <form >
+        <div class="form-group">
+            <?php
+            $local = $_SESSION['eMail'];
+            
+            $servername = "localhost";
+            $username = "root";
+            $password = "mySQLp@ssword127";
+            $databasename = "hackunamatata";
+            $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
+            $query = $conn->prepare("SELECT * FROM user WHERE user_email='$local'"); // get current user
+            $query->execute(); // actually perform the query
+            $result = $query->get_result(); // retrieve the result so it can be used inside PHP
+            $r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
+            $userid = $r['userid'];//assign current user's user id to local variable
 
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>1kg garlic, 1kg onions</td>
-                            <td>2020.04.12</td>
-                            <td>1500</td>
-                            <td><a href="#"><i class="fas fa-eye"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>1kg potatoes</td>
-                            <td>2020.04.12</td>
-                            <td>2000</td>
-                            <td><a href="#"><i class="fas fa-eye"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>1kg tomatoes</td>
-                            <td>2020.04.12</td>
-                            <td>3000</td>
-                            <td><a href="#"><i class="fas fa-eye"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>1kg kalamansi</td>
-                            <td>2020.04.12</td>
-                            <td>4000</td>
-                            <td><a href="#"><i class="fas fa-eye"></i></a></td>
-                        </tr>
-                    </tbody>
-                </table>       
-            </div>
-        </div>
+            $query = $conn->prepare("SELECT * FROM orders WHERE userid='$userid'"); // get current user
+            $query->execute(); // actually perform the query
+            $result = $query->get_result(); // retrieve the result so it can be used inside PHP
+            $r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
+            $orderid = $r['orderID'];//assign current user's user id to local variable
+            
+            $query1 = $conn->prepare("SELECT * FROM transaction WHERE orderId = '$orderid'"); // get products of current user
+            $query1->execute(); // actually perform the query
+            $result1 = $query1->get_result(); // retrieve the result so it can be used inside PHP
+            $r1 = $result1->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
+            
+            if ($result1 -> num_rows > 0)
+            {
+                echo'<div style="max-height: 400px; overflow: scroll;">
+                <div style="width: 100%;">
+                <table class="table table-hover text-center" id="myTable">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th style="cursor: pointer;" onclick="sortTable(0)">Transaction Id</th>
+                                <th style="cursor: pointer;" onclick="sortTable(1)">Order Id </th>
+                                <th style="cursor: pointer;" onclick="sortTable(2)">Particulars</th>
+                                <th style="cursor: pointer;" onclick="sortTable(3)">Transaction Date</th>       
+                                <th style="cursor: pointer;" onclick="sortTable(4)">Total Price </th>         
+                                <th style="cursor: pointer;" onclick="sortTable(5)"></th>
+                                <th></th>
+                            </tr>
+                    </thead>
+                    <tbody>';
+                do
+                {   
+                    echo "<tr>";
+                    echo "<td>".$r1['transactionID']."</td>";
+                    echo "<td>".$r1['orderId']."</td>";
+                    echo "<td></td>";
+                    echo "<td>".$r1['transaction_date']."</td>";
+                    echo "<td>".$r1['transaction_totalPrice']."</td>";
+                    echo "<td> <a href='#7'><i class='fas fa-eye'></i></a></td>";
+                    echo "</tr>";
+                }
+                while ($r1 = $result1 -> fetch_assoc());
+                           }
+            else
+            {
+                echo 'No records found.<br><br><br></div>';
+            }
+            ?>
+    </form>
+</div>
+
 <?php
 require_once('../partials/footer.php');
 ?>
