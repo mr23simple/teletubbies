@@ -189,9 +189,6 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
     </form>
 </div>
 
-<?php } //end if user is farmer
-    ?>
-
 <!-- Divider -->
 <div class="divider  mb-5">
     <hr>
@@ -238,6 +235,9 @@ $r2 = $result2->fetch_array(MYSQLI_ASSOC); // bind the data from the first resul
 <div class="divider  mb-5">
     <hr>
 </div>
+
+<?php } //end if user is farmer
+    ?>
 
 <!-- update user info modal -->
 <div class="modal fade" id="update">
