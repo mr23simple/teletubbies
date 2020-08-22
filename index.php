@@ -20,6 +20,12 @@
     }
 //Assign the current timestamp as the user's latest activity
 $_SESSION['last_action'] = time();
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$databasename = "hackunamatata";
+$conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 ?>
 
 <!DOCTYPE html>
@@ -120,89 +126,43 @@ $_SESSION['last_action'] = time();
                 <hr>
             </div>
 
-           <!-- Produce -->
-            <div class="container">
-                <div class="row row-cols-1 row-cols-md-3">
+            <!-- Produce -->
+            <?php
+            $query = $conn->prepare("SELECT * FROM product"); // displays all products
+            $query->execute(); // actually perform the query
+            $result = $query->get_result(); // retrieve the result so it can be used inside PHP
+            $r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
+
+            if ($result -> num_rows > 0)
+            {
+                echo '<div class="container">
+                <div class="row row-cols-1 row-cols-md-3">';
+                do
+                {
+                    echo '
                     <div class="col mb-4">
                         <div class="card">
-                            <img src="assets/images/bell_pepper.jpg" class="card-img-top product-img mx-auto my-auto" alt="vegetables">
+                            <img src="assets/images/bell_pepper.jpg" class="card-img-top product-img mx-auto my-auto" alt="product">
                             <div class="card-body">
-                                <h5 class="card-title">Bell Pepper</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>250</h6>
-                                <p class="card-text">Fresh bell peppers from local farmers. </p>
+                                <h5 class="card-title">'.$r["product_name"].'</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>'.$r["product_price"].'</h6>
+                                <p class="card-text">'.$r["product_description"].'</p>
                             </div>
                             <div class="card-body">
                                 <button class="btn btn-success btn-block">Add to Cart</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card">
-                            <img src="assets/images/bell_pepper.jpg" class="card-img-top product-img mx-auto my-auto" alt="vegetables">
-                            <div class="card-body">
-                                <h5 class="card-title">Bell Pepper</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>250</h6>
-                                <p class="card-text">Fresh bell peppers from local farmers. </p>
-                            </div>
-                            <div class="card-body">
-                                <button class="btn btn-success btn-block">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card">
-                            <img src="assets/images/bell_pepper.jpg" class="card-img-top product-img mx-auto my-auto" alt="vegetables">
-                            <div class="card-body">
-                                <h5 class="card-title">Bell Pepper</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>250</h6>
-                                <p class="card-text">Fresh bell peppers from local farmers. </p>
-                            </div>
-                            <div class="card-body">
-                                <button class="btn btn-success btn-block">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card">
-                            <img src="assets/images/bell_pepper.jpg" class="card-img-top product-img mx-auto my-auto" alt="vegetables">
-                            <div class="card-body">
-                                <h5 class="card-title">Bell Pepper</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>250</h6>
-                                <p class="card-text">Fresh bell peppers from local farmers. </p>
-                            </div>
-                            <div class="card-body">
-                                <button class="btn btn-success btn-block">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card">
-                            <img src="assets/images/bell_pepper.jpg" class="card-img-top product-img mx-auto my-auto" alt="vegetables">
-                            <div class="card-body">
-                                <h5 class="card-title">Bell Pepper</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>250</h6>
-                                <p class="card-text">Fresh bell peppers from local farmers. </p>
-                            </div>
-                            <div class="card-body">
-                                <button class="btn btn-success btn-block">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-4">
-                        <div class="card">
-                            <img src="assets/images/bell_pepper.jpg" class="card-img-top product-img mx-auto my-auto" alt="vegetables">
-                            <div class="card-body">
-                                <h5 class="card-title">Bell Pepper</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>250</h6>
-                                <p class="card-text">Fresh bell peppers from local farmers. </p>
-                            </div>
-                            <div class="card-body">
-                                <button class="btn btn-success btn-block">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </div>';
+                }
+                while ($r = $result -> fetch_assoc());
+                echo '</div>
+                </div>';
+            }
+            else
+            {
+                echo 'No products found.';
+            }
+            ?>
         </div>
 
        <!-- login modal -->
