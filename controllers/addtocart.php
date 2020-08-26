@@ -7,46 +7,31 @@ $databasename = "hackunamatata";
 $conn = new mysqli($servername, $username, $password, $databasename) or die(mysqli_error()); //Connect to server or display error
 
 $id = $_POST['submit']; //product id
+$email = $_SESSION['eMail']; //user email
 
-$query = $conn->prepare("SELECT * FROM product WHERE productId = '$id'"); // displays selected product
-$query->execute(); // actually perform the query
-$result = $query->get_result(); // retrieve the result so it can be used inside PHP
-$r = $result->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
+//getting user details from db
+$getUser = $conn->prepare("SELECT * FROM user WHERE user_email = '$email'"); // get current user
+$getUser->execute(); // actually perform the query
+$userResult = $getUser->get_result(); // retrieve the result so it can be used inside PHP
+$user = $userResult->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
 
+$getId = $user['userid'];
+
+//getting product details from db
+$getProduct = $conn->prepare("SELECT * FROM product WHERE productId = '$id'"); // get selected product details
+$getProduct->execute(); // actually perform the query
+$productResult = $getProduct->get_result(); // retrieve the result so it can be used inside PHP
+$product = $productResult->fetch_array(MYSQLI_ASSOC); // bind the data from the first result row to $r
+
+$getPId  = $product['productId'];
+$getPPrice  = $product['product_price'];
+//$getPId  = $product['productId'];
+
+//perform the new db entry
 mysqli_select_db($conn,"hackunamatata") or die("Cannot connect to database"); //Connect to database
-mysqli_query($conn, "UPDATE `product` SET `product_name`='$prodName',`product_price`='$price',`product_unitOfMeasure`='$unit',
-`product_quantity`='$quantity',`product_description`='$desc' WHERE `productId` = '$productId'"); //update record in database
+mysqli_query($conn, "INSERT INTO `orders`(`userid`, `productid`, `order_pricePerUnit`, `order_quantityOrdered`) 
+VALUES ('$getId','$getPId','$getPPrice','1')"); // insert record in database
 
-Print '<script>alert("Product data successfully updated.");</script>'; //Prompts the user
-Print '<script>window.location.assign("../views/user.php");</script>'; // redirect
-
-/*try
-{
-    $sql = "UPDATE User set 
-    user_organization = '".$name."',
-    user_email = '".$eMail."',
-    user_password ='".$pWord."',
-    user_phoneNumber = '".$pNum."',
-    user_address = '".$loc."',
-    user_isCorporate = '".$isCorporate."'
-    WHERE userid = '".$sessionUserid."'";
-
-    $result = mysqli_query($conn, $sql) or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error($conn), E_USER_ERROR);
-    
-    if($result)
-    {
-        
-        Print '<script>alert("Update successful.");</script>'; // prompts the user
-        Print '<script>window.location.assign("../views/user.php");</script>'; // redirects to ../views/user.php
-    } //insert record into database
-    else 
-    {
-    Print '<script>alert("Update failed.");</script>'; // prompts the user
-        Print '<script>window.location.assign("../views/user.php");</script>'; // redirects to ../views/user.php
-    }
-} catch (Exception $e)
-{
-    Print '<script>alert("Caught Exception. Try again.");</script>'; //Prompts the user
-    echo $e->getMessage(), "\n";
-}       */ 
+Print '<script>alert("Successfully added to cart.");</script>'; //Prompts the user
+Print '<script>window.location.assign("../index.php");</script>'; // redirect
 ?>

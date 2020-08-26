@@ -33,7 +33,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home Page</title>
+        <title>Farmers Connect</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -55,7 +55,7 @@
     <body>
         <!-- Navbar -->
         <nav class="mainNav navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand ml-5" href="#">LOGO</a>
+            <a class="navbar-brand ml-5" href="#">Farmers Connect</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -105,6 +105,7 @@
                 </ul>
             </div>
         </nav>
+
         <!-- Content -->
         <div class="container-fluid">
             <!-- Search Bar -->
@@ -123,6 +124,16 @@
 
             <!-- Divider -->
             <div class="divider mt-5 mb-5">
+                <hr>
+            </div>
+
+                    <!-- Title -->
+        <div class="container mt-5">
+            <h3>Browse products</h3>  
+        </div>
+
+        <!-- Divider -->
+        <div class="divider mt-5 mb-5">
                 <hr>
             </div>
 
@@ -149,10 +160,19 @@
                                 <h6 class="card-subtitle mb-2 text-muted"><span>PHP </span>'.$r["product_price"].'</h6>
                                 <p class="card-text">'.$r["product_description"].'</p>
                             </div>
-                            <div class="card-body">
-                                <form action="views/addtocart.php" method="post">
-                                    <button type="submit" name="submit" value="'.$local.'" class="btn btn-success btn-block" id="checkBtn" >Add to cart</button>
-                                </form>
+                            <div class="card-body">';
+                            if(isset($_SESSION['eMail']))
+                            {
+                                echo '<form action="views/addtocart.php" method="post">
+                                <button type="submit" name="submit" value="'.$local.'" class="btn btn-success btn-block" id="checkBtn" >Add to cart</button>
+                            </form>';
+                            }
+                            else
+                            {
+                                echo '<a class="btn btn-success btn-block" data-toggle="modal" href="#login"> 
+                                Add to cart</a>';
+                            }
+                            echo '
                             </div>
                         </div>
                     </div>';
